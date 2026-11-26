@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Mariage — Corentin & Kelly | 28 Juin 2027</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond (Titres) & Plus Jakarta Sans (Texte) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- QRCode.js pour générer le Flash Code dans l'espace mariés -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ivory: '#FAF8F5',
+                        sand: '#F2EDE4',
+                        sage: {
+                            light: '#E6ECE8',
+                            DEFAULT: '#6B8273',
+                            dark: '#4A5D51'
+                        },
+                        gold: {
+                            light: '#E8DCC4',
+                            DEFAULT: '#B89B67',
+                            dark: '#967B49'
+                        },
+                        charcoal: '#2C2E2D'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #2C2E2D;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4CFC5;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6B8273;
+        }
+        /* Masonry Grid pour la galerie */
+        .masonry-grid {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 3;
+                column-gap: 1.5rem;
+            }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 4;
+            }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-item {
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-sage-light selection:text-sage-dark">
+
+    <!-- Toast Notification Container (Remplace alert()) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 left-5 sm:left-auto sm:w-96 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Navigation Sticky -->
+    <nav class="sticky top-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-sand transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="#accueil" class="font-serif text-2xl sm:text-3xl font-semibold tracking-wide text-charcoal">
+                C <span class="text-gold italic font-normal">&amp;</span> K
+            </a>
+            <div class="flex items-center gap-2 sm:gap-6 text-sm font-medium">
+                <a href="#programme" class="hidden sm:inline-block text-charcoal/80 hover:text-sage-dark transition">Le Jour J</a>
+                <a href="#rsvp" class="px-3 py-2 rounded-full text-charcoal/90 hover:bg-sand transition">Répondre (RSVP)</a>
+                <a href="#galerie" class="px-3 py-2 rounded-full text-charcoal/90 hover:bg-sand transition">Album Photos</a>
+                <button id="open-admin-btn" class="p-2.5 rounded-full bg-sand/80 hover:bg-sage-light text-charcoal/80 hover:text-sage-dark transition flex items-center gap-1.5" title="Espace Mariés">
+                    <i data-lucide="lock" class="w-4 h-4"></i>
+                    <span class="hidden md:inline text-xs font-semibold">Espace Mariés</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="accueil" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 px-4 overflow-hidden">
+        <!-- Décorations florales minimalistes SVG en arrière-plan -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-sage-light/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-gold-light/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <p class="uppercase tracking-[0.25em] text-xs sm:text-sm text-sage-dark font-semibold mb-4">
+                Nous nous disons Oui
+            </p>
+            <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-charcoal leading-tight mb-6">
+                Corentin <span class="text-gold italic font-light">&amp;</span> Kelly
+            </h1>
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <span class="h-px w-12 sm:w-20 bg-gold/60"></span>
+                <p class="font-serif text-2xl sm:text-3xl italic text-charcoal/90">
+                    Samedi 28 Juin 2027
+                </p>
+                <span class="h-px w-12 sm:w-20 bg-gold/60"></span>
+            </div>
+
+            <!-- Compte à rebours dynamique jusqu'au 28 Juin 2027 à 14h30 -->
+            <div id="countdown-container" class="inline-flex items-center justify-center gap-3 sm:gap-6 bg-white/80 backdrop-blur-sm border border-sand px-6 py-3 rounded-2xl shadow-sm mb-8">
+                <div class="text-center">
+                    <span id="cd-days" class="font-serif text-2xl sm:text-3xl font-bold text-sage-dark block leading-none">--</span>
+                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Jours</span>
+                </div>
+                <span class="text-gold font-serif text-xl">:</span>
+                <div class="text-center">
+                    <span id="cd-hours" class="font-serif text-2xl sm:text-3xl font-bold text-charcoal block leading-none">--</span>
+                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Heures</span>
+                </div>
+                <span class="text-gold font-serif text-xl">:</span>
+                <div class="text-center">
+                    <span id="cd-minutes" class="font-serif text-2xl sm:text-3xl font-bold text-charcoal block leading-none">--</span>
+                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Min</span>
+                </div>
+                <span class="text-gold font-serif text-xl">:</span>
+                <div class="text-center">
+                    <span id="cd-seconds" class="font-serif text-2xl sm:text-3xl font-bold text-gold-dark block leading-none">--</span>
+                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Sec</span>
+                </div>
+            </div>
+
+            <p class="text-charcoal/75 max-w-xl mx-auto text-base sm:text-lg leading-relaxed mb-10">
+                C'est avec une immense joie que nous vous convions à célébrer notre union au cœur de la Bretagne. Merci de nous confirmer votre présence ci-dessous et de partager vos plus beaux souvenirs photo !
+            </p>
+
+            <!-- Boutons d'action principaux (Optimisés tactile) -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 rounded-full bg-sage text-white font-medium shadow-md hover:bg-sage-dark active:scale-[0.98] transition flex items-center justify-center gap-2">
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    <span>Confirmer ma présence</span>
+                </a>
+                <a href="#galerie" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-gold/50 text-charcoal font-medium shadow-sm hover:bg-sand/50 active:scale-[0.98] transition flex items-center justify-center gap-2">
+                    <i data-lucide="camera" class="w-5 h-5 text-gold-dark"></i>
+                    <span>Partager mes photos</span>
+                </a>
+                <button type="button" id="hero-copy-link-btn" class="w-full sm:w-auto px-6 py-4 rounded-full bg-sand/90 hover:bg-gold-light/60 text-charcoal font-medium border border-gold/40 transition flex items-center justify-center gap-2">
+                    <i data-lucide="link" class="w-5 h-5 text-sage-dark"></i>
+                    <span>Copier le lien</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- INFORMATIONS PRATIQUES / PROGRAMME (Rendu dynamique & personnalisable) -->
+    <section id="programme" class="py-16 px-4 bg-sand/50 border-y border-sand">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase tracking-[0.2em] text-gold-dark font-semibold">Les temps forts</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal mt-1">Le Programme de la Journée</h2>
+            </div>
+
+            <div id="schedule-public-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Carte 1 par défaut -->
+                <div class="bg-ivory p-8 rounded-3xl border border-sand shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-light text-sage-dark flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-gold-dark tracking-wider uppercase mb-1">14h30</p>
+                    <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2">Cérémonie Civile &amp; Laïque</h3>
+                    <p class="text-sm text-charcoal/75 leading-relaxed">
+                        Mairie de Mordelles (35310 Mordelles) suivie d'une cérémonie dans les jardins du Domaine de la Roche.
+                    </p>
+                </div>
+
+                <!-- Carte 2 par défaut -->
+                <div class="bg-ivory p-8 rounded-3xl border border-sand shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-light text-sage-dark flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="wine" class="w-6 h-6"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-gold-dark tracking-wider uppercase mb-1">17h00</p>
+                    <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2">Vin d'Honneur</h3>
+                    <p class="text-sm text-charcoal/75 leading-relaxed">
+                        Cocktails, gourmandises bretonnes et musique acoustique sous les pommiers en fleurs.
+                    </p>
+                </div>
+
+                <!-- Carte 3 par défaut -->
+                <div class="bg-ivory p-8 rounded-3xl border border-sand shadow-sm text-center">
+                    <div class="w-12 h-12 rounded-2xl bg-sage-light text-sage-dark flex items-center justify-center mx-auto mb-5">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-gold-dark tracking-wider uppercase mb-1">20h00</p>
+                    <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2">Dîner &amp; Soirée Dansante</h3>
+                    <p class="text-sm text-charcoal/75 leading-relaxed">
+                        Grande tablée dans l'Orangerie du Domaine jusqu'au bout de la nuit !
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION RSVP (Confirmation de présence via Flash Code) -->
+    <section id="rsvp" class="py-20 px-4">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase tracking-[0.2em] text-sage-dark font-semibold">Réponse souhaitée avant le 1er Avril 2027</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal mt-1">Confirmez votre présence</h2>
+                <p class="text-charcoal/70 mt-3 text-sm sm:text-base">
+                    Vous avez scanné notre faire-part ? Remplissez ce formulaire rapide pour nous indiquer si vous serez des nôtres.
+                </p>
+            </div>
+
+            <!-- Carte Formulaire RSVP -->
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-lg shadow-charcoal/5 border border-sand">
+                <form id="rsvp-form" class="space-y-6">
+                    <!-- Choix Présence (Gros boutons tactiles) -->
+                    <div>
+                        <label class="block text-sm font-semibold text-charcoal mb-3">Serez-vous présent(e) à notre mariage ? *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="attending" value="oui" class="peer sr-only" checked required>
+                                <div class="p-4 rounded-2xl border-2 border-sand peer-checked:border-sage peer-checked:bg-sage-light/40 transition flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-sage-light text-sage-dark flex items-center justify-center shrink-0">
+                                        <i data-lucide="check" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm text-charcoal">Oui, avec grand plaisir !</p>
+                                        <p class="text-xs text-charcoal/60">Je serai là pour fêter ça</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer">
+                                <input type="radio" name="attending" value="non" class="peer sr-only" required>
+                                <div class="p-4 rounded-2xl border-2 border-sand peer-checked:border-gold peer-checked:bg-gold-light/30 transition flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-sand text-charcoal/70 flex items-center justify-center shrink-0">
+                                        <i data-lucide="x" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-sm text-charcoal">Non, malheureusement</p>
+                                        <p class="text-xs text-charcoal/60">Je penserai fort à vous</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Prénom & Nom -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-charcoal mb-1.5">Prénom *</label>
+                            <input type="text" id="firstName" required placeholder="Ex: Thomas"
+                                class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition">
+                        </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-charcoal mb-1.5">Nom *</label>
+                            <input type="text" id="lastName" required placeholder="Ex: Martin"
+                                class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition">
+                        </div>
+                    </div>
+
+                    <!-- Détails si présent (Nombre d'adultes / enfants + Régime alimentaire) -->
+                    <div id="attending-details" class="space-y-5 transition-all">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="adults" class="block text-sm font-medium text-charcoal mb-1.5">Nombre d'adultes</label>
+                                <select id="adults" class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage outline-none transition">
+                                    <option value="1">1 adulte</option>
+                                    <option value="2" selected>2 adultes</option>
+                                    <option value="3">3 adultes</option>
+                                    <option value="4">4 adultes</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="children" class="block text-sm font-medium text-charcoal mb-1.5">Nombre d'enfants</label>
+                                <select id="children" class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage outline-none transition">
+                                    <option value="0" selected>Aucun enfant</option>
+                                    <option value="1">1 enfant</option>
+                                    <option value="2">2 enfants</option>
+                                    <option value="3">3 enfants</option>
+                                    <option value="4">4 enfants</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="dietary" class="block text-sm font-medium text-charcoal mb-1.5">Allergies ou régime alimentaire particulier</label>
+                            <input type="text" id="dietary" placeholder="Végétarien, sans gluten, allergie aux arachides..."
+                                class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition">
+                        </div>
+                    </div>
+
+                    <!-- Petit mot pour les mariés -->
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-charcoal mb-1.5">Un petit mot pour les mariés (facultatif)</label>
+                        <textarea id="message" rows="3" placeholder="Une chanson que vous voulez absolument entendre sur la piste ?"
+                            class="w-full px-4 py-3 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition"></textarea>
+                    </div>
+
+                    <!-- Bouton d'envoi -->
+                    <button type="submit" id="rsvp-submit-btn"
+                        class="w-full py-4 rounded-2xl bg-sage hover:bg-sage-dark text-white font-semibold shadow-md transition active:scale-[0.99] flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-5 h-5"></i>
+                        <span>Envoyer ma réponse</span>
+                    </button>
+                </form>
+
+                <!-- Message de confirmation affiché après soumission -->
+                <div id="rsvp-success-box" class="hidden text-center py-8 space-y-4">
+                    <div class="w-16 h-16 rounded-full bg-sage-light text-sage-dark flex items-center justify-center mx-auto">
+                        <i data-lucide="check-circle-2" class="w-9 h-9"></i>
+                    </div>
+                    <h3 class="font-serif text-3xl font-semibold text-charcoal">Merci pour votre réponse !</h3>
+                    <p id="rsvp-success-text" class="text-charcoal/75 max-w-md mx-auto text-sm sm:text-base"></p>
+                    <button type="button" id="rsvp-reset-btn" class="mt-4 px-6 py-2.5 rounded-full bg-sand hover:bg-gold-light/60 text-sm font-medium text-charcoal transition">
+                        Enregistrer une autre réponse
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION GALERIE PHOTOS PARTICIPATIVE -->
+    <section id="galerie" class="py-20 px-4 bg-sand/40 border-t border-sand">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs uppercase tracking-[0.2em] text-gold-dark font-semibold">Souvenirs partagés</span>
+                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal mt-1">L'Album Photo du Mariage</h2>
+                <p class="text-charcoal/75 mt-3 text-sm sm:text-base">
+                    Capturez les coulisses, les fous rires et la piste de danse ! Importez vos photos directement depuis votre téléphone pour créer notre album souvenir collectif.
+                </p>
+            </div>
+
+            <!-- Zone d'importation de photos depuis le téléphone -->
+            <div class="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-sand mb-14">
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label for="photo-author" class="block text-xs font-semibold uppercase tracking-wider text-charcoal/70 mb-1">Votre prénom</label>
+                            <input type="text" id="photo-author" placeholder="Ex: Léa"
+                                class="w-full px-4 py-3 rounded-xl bg-ivory border border-sand focus:border-sage outline-none text-sm">
+                        </div>
+                        <div>
+                            <label for="photo-caption" class="block text-xs font-semibold uppercase tracking-wider text-charcoal/70 mb-1">Légende (facultatif)</label>
+                            <input type="text" id="photo-caption" placeholder="Ex: Trop beaux !"
+                                class="w-full px-4 py-3 rounded-xl bg-ivory border border-sand focus:border-sage outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Bouton / Dropzone mobile-first pour sélectionner ou prendre des photos -->
+                    <label for="photo-input" id="drop-zone"
+                        class="block cursor-pointer border-2 border-dashed border-sage/50 hover:border-sage bg-sage-light/20 hover:bg-sage-light/40 rounded-2xl p-6 text-center transition">
+                        <input type="file" id="photo-input" accept="image/*" multiple class="hidden">
+                        <div class="w-12 h-12 rounded-full bg-white text-sage-dark shadow-sm flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="image-plus" class="w-6 h-6"></i>
+                        </div>
+                        <p class="font-semibold text-charcoal text-base">Ajouter des photos depuis mon téléphone</p>
+                        <p class="text-xs text-charcoal/60 mt-1">Appuyez ici pour ouvrir votre galerie ou l'appareil photo (plusieurs photos possibles)</p>
+                    </label>
+
+                    <!-- Barre de progression lors de l'upload -->
+                    <div id="upload-progress-container" class="hidden space-y-2 pt-2">
+                        <div class="flex justify-between text-xs font-medium text-sage-dark">
+                            <span id="upload-status-text">Préparation et envoi des photos...</span>
+                            <span id="upload-percent">0%</span>
+                        </div>
+                        <div class="w-full bg-sand rounded-full h-2.5 overflow-hidden">
+                            <div id="upload-progress-bar" class="bg-sage h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compteur de photos -->
+            <div class="flex items-center justify-between mb-6 px-1">
+                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal">
+                    Photos des invités <span id="photo-count-badge" class="text-base font-sans font-normal text-charcoal/60 ml-1">(0)</span>
+                </h3>
+                <span class="text-xs text-charcoal/60 flex items-center gap-1">
+                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Mise à jour en direct
+                </span>
+            </div>
+
+            <!-- Grille Masonry des photos -->
+            <div id="photo-gallery-grid" class="masonry-grid">
+                <!-- Les photos seront injectées ici dynamiquement -->
+            </div>
+
+            <!-- État vide de la galerie -->
+            <div id="gallery-empty-state" class="text-center py-14 bg-white/60 rounded-3xl border border-sand">
+                <div class="w-14 h-14 rounded-full bg-sand text-charcoal/50 flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="camera-off" class="w-7 h-7"></i>
+                </div>
+                <p class="font-serif text-2xl text-charcoal">Aucune photo pour le moment</p>
+                <p class="text-sm text-charcoal/65 mt-1">Soyez le premier à immortaliser ce moment en ajoutant un cliché ci-dessus !</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal text-ivory/80 py-12 px-4 text-center">
+        <p class="font-serif text-3xl text-white mb-2">Corentin <span class="text-gold italic">&amp;</span> Kelly</p>
+        <p class="text-xs tracking-widest uppercase text-ivory/50 mb-6">28 Juin 2027 • Mordelles, Bretagne</p>
+        <p class="text-xs text-ivory/40">Fait avec amour pour célébrer notre union entourés de nos proches.</p>
+    </footer>
+
+    <!-- LIGHTBOX MODAL (Agrandissement photo) -->
+    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden flex-col items-center justify-center p-4">
+        <div class="w-full max-w-4xl flex justify-between items-center text-white mb-3">
+            <div>
+                <p id="lightbox-author" class="font-semibold text-sm"></p>
+                <p id="lightbox-caption" class="text-xs text-white/70"></p>
+            </div>
+            <div class="flex items-center gap-3">
+                <a id="lightbox-download" href="#" download="souvenir-mariage.jpg" class="p-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition" title="Télécharger la photo">
+                    <i data-lucide="download" class="w-5 h-5"></i>
+                </a>
+                <button id="lightbox-close" class="p-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition" title="Fermer">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        <img id="lightbox-img" src="" alt="Souvenir mariage" class="max-h-[80vh] max-w-full rounded-xl object-contain shadow-2xl">
+    </div>
+
+    <!-- MODAL ESPACE MARIÉS (PIN + Tableau de bord RSVP + Générateur QR Code) -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-charcoal/70 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-ivory w-full max-w-4xl rounded-3xl shadow-2xl border border-sand overflow-hidden my-8">
+            <!-- Header Modal -->
+            <div class="bg-white px-6 py-4 border-b border-sand flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-sage-light text-sage-dark flex items-center justify-center">
+                        <i data-lucide="crown" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-serif text-2xl font-semibold text-charcoal leading-none">Espace Mariés</h3>
+                        <p class="text-xs text-charcoal/60">Gestion des invités &amp; Flash Code</p>
+                    </div>
+                </div>
+                <button id="close-admin-btn" class="p-2 rounded-full hover:bg-sand text-charcoal/70 transition">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <!-- Écran de verrouillage PIN -->
+            <div id="admin-pin-screen" class="p-8 sm:p-12 text-center max-w-md mx-auto">
+                <div class="w-14 h-14 rounded-2xl bg-gold-light/50 text-gold-dark flex items-center justify-center mx-auto mb-4">
+                    <i data-lucide="key-round" class="w-7 h-7"></i>
+                </div>
+                <h4 class="font-serif text-3xl text-charcoal mb-2">Accès réservé aux mariés</h4>
+                <p class="text-sm text-charcoal/70 mb-6">Entrez le code secret pour consulter les réponses RSVP et récupérer votre QR Code (Code par défaut : <strong>2027</strong>).</p>
+                <form id="pin-form" class="space-y-4">
+                    <input type="password" id="pin-input" maxlength="6" placeholder="••••" inputmode="numeric"
+                        class="w-48 mx-auto block text-center text-2xl tracking-[0.5em] font-bold py-3 px-4 rounded-2xl bg-white border border-sand focus:border-sage outline-none">
+                    <p id="pin-error" class="text-xs text-red-600 hidden">Code incorrect. Indice : l'année du mariage (2027).</p>
+                    <button type="submit" class="w-full py-3.5 rounded-2xl bg-sage hover:bg-sage-dark text-white font-semibold transition">
+                        Déverrouiller
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tableau de bord déverrouillé -->
+            <div id="admin-dashboard" class="hidden p-6 sm:p-8 space-y-8 max-h-[80vh] overflow-y-auto">
+                
+                <!-- Statistiques rapides -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    <div class="bg-white p-4 rounded-2xl border border-sand">
+                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Présents (Total)</p>
+                        <p id="stat-total-guests" class="font-serif text-3xl font-bold text-sage-dark mt-1">0</p>
+                        <p id="stat-breakdown" class="text-xs text-charcoal/60 mt-0.5">0 adultes, 0 enfants</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-sand">
+                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Réponses "Oui"</p>
+                        <p id="stat-yes-count" class="font-serif text-3xl font-bold text-charcoal mt-1">0</p>
+                        <p class="text-xs text-charcoal/60 mt-0.5">foyers confirmés</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-sand">
+                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Réponses "Non"</p>
+                        <p id="stat-no-count" class="font-serif text-3xl font-bold text-gold-dark mt-1">0</p>
+                        <p class="text-xs text-charcoal/60 mt-0.5">absents</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-sand">
+                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Photos partagées</p>
+                        <p id="stat-photos-count" class="font-serif text-3xl font-bold text-charcoal mt-1">0</p>
+                        <p class="text-xs text-charcoal/60 mt-0.5">clichés en ligne</p>
+                    </div>
+                </div>
+
+                <!-- Section Générateur de QR Code pour les faire-part -->
+                <div class="bg-white p-6 rounded-2xl border border-sand flex flex-col sm:flex-row items-center gap-6">
+                    <div id="qrcode-container" class="p-3 bg-white border-2 border-gold/40 rounded-2xl shrink-0"></div>
+                    <div class="space-y-3 text-center sm:text-left flex-1">
+                        <span class="inline-block px-3 py-1 rounded-full bg-gold-light/50 text-gold-dark text-xs font-semibold">Pour vos faire-part &amp; tables</span>
+                        <h4 class="font-serif text-2xl font-semibold text-charcoal">Votre Flash Code (QR Code)</h4>
+                        <p class="text-sm text-charcoal/75 leading-relaxed">
+                            Téléchargez ce QR Code et imprimez-le sur vos faire-part pour que vos invités confirment leur présence, ou placez-le sur les tables le jour J pour qu'ils partagent leurs photos !
+                        </p>
+                        <div class="flex flex-wrap justify-center sm:justify-start gap-2 pt-1">
+                            <button type="button" id="download-qr-btn" class="px-4 py-2.5 rounded-xl bg-charcoal text-white text-xs font-semibold hover:bg-charcoal/85 transition flex items-center gap-1.5">
+                                <i data-lucide="download" class="w-4 h-4"></i> Télécharger le QR Code (PNG)
+                            </button>
+                            <button type="button" id="copy-link-btn" class="px-4 py-2.5 rounded-xl bg-sand text-charcoal text-xs font-semibold hover:bg-gold-light/60 transition flex items-center gap-1.5">
+                                <i data-lucide="link" class="w-4 h-4"></i> Copier le lien du site
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section Personnaliser le programme de la journée -->
+                <div class="bg-white p-6 rounded-2xl border border-sand space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <span class="inline-block px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-semibold mb-1">Édition en direct</span>
+                            <h4 class="font-serif text-2xl font-semibold text-charcoal">Personnaliser le programme</h4>
+                            <p class="text-xs text-charcoal/70">Modifiez les horaires, titres et descriptions. Les changements s'affichent immédiatement pour vos invités.</p>
+                        </div>
+                        <button type="button" id="add-schedule-step-btn" class="px-4 py-2.5 rounded-xl bg-sand hover:bg-gold-light/60 text-charcoal text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <i data-lucide="plus" class="w-4 h-4"></i> Ajouter une étape
+                        </button>
+                    </div>
+
+                    <div id="admin-schedule-list" class="space-y-3">
+                        <!-- Étapes éditables générées dynamiquement -->
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-sand">
+                        <button type="button" id="reset-schedule-btn" class="text-xs text-charcoal/60 hover:text-charcoal underline">
+                            Rétablir le programme par défaut
+                        </button>
+                        <button type="button" id="save-schedule-btn" class="px-6 py-3 rounded-xl bg-sage hover:bg-sage-dark text-white text-xs font-semibold shadow-sm transition flex items-center gap-2">
+                            <i data-lucide="save" class="w-4 h-4"></i> Enregistrer et publier le programme
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Liste des réponses RSVP -->
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                        <h4 class="font-serif text-2xl font-semibold text-charcoal">Liste des réponses reçues</h4>
+                        <button type="button" id="export-csv-btn" class="px-4 py-2 rounded-xl bg-sage text-white text-xs font-semibold hover:bg-sage-dark transition flex items-center gap-1.5 self-start sm:self-auto">
+                            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Exporter en Excel / CSV
+                        </button>
+                    </div>
+
+                    <div class="bg-white rounded-2xl border border-sand overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="border-b border-sand bg-sand/30 text-xs uppercase text-charcoal/70">
+                                    <th class="py-3 px-4">Invité</th>
+                                    <th class="py-3 px-4">Statut</th>
+                                    <th class="py-3 px-4">Personnes</th>
+                                    <th class="py-3 px-4">Allergies / Régime</th>
+                                    <th class="py-3 px-4">Message</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rsvp-table-body" class="divide-y divide-sand">
+                                <tr>
+                                    <td colspan="5" class="py-8 text-center text-charcoal/50">Chargement des réponses...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FIREBASE & APPLICATION LOGIC -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Initialisation des icônes Lucide
+        lucide.createIcons();
+
+        // Configuration Firebase fournie par l'environnement
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'mariage-corentin-kelly-2027';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+
+        let db = null;
+        let auth = null;
+        let currentUser = null;
+        let rsvpList = [];
+        let photosList = [];
+
+        // Programme par défaut (modifiable par les mariés)
+        const DEFAULT_SCHEDULE = [
+            {
+                icon: 'heart',
+                time: '14h30',
+                title: 'Cérémonie Civile & Laïque',
+                description: "Mairie de Mordelles (35310 Mordelles) suivie d'une cérémonie dans les jardins du Domaine de la Roche."
+            },
+            {
+                icon: 'wine',
+                time: '17h00',
+                title: "Vin d'Honneur",
+                description: 'Cocktails, gourmandises bretonnes et musique acoustique sous les pommiers en fleurs.'
+            },
+            {
+                icon: 'sparkles',
+                time: '20h00',
+                title: 'Dîner & Soirée Dansante',
+                description: "Grande tablée dans l'Orangerie du Domaine jusqu'au bout de la nuit !"
+            }
+        ];
+
+        let currentSchedule = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
+// ... existing code ... -->
+        document.getElementById('open-admin-btn').addEventListener('click', () => {
+            adminModal.classList.remove('hidden');
+            adminModal.classList.add('flex');
+        });
+
+        document.getElementById('close-admin-btn').addEventListener('click', () => {
+            adminModal.classList.add('hidden');
+            adminModal.classList.remove('flex');
+        });
+
+        // Vérification du code PIN (2027)
+        document.getElementById('pin-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pin = document.getElementById('pin-input').value.trim();
+            if (pin === '2027') {
+                document.getElementById('pin-error').classList.add('hidden');
+                pinScreen.classList.add('hidden');
+                adminDashboard.classList.remove('hidden');
+                updateAdminDashboard();
+                renderAdminScheduleEditor();
+                if (!qrGenerated) {
+                    generateWeddingQRCode();
+                }
+            } else {
+                document.getElementById('pin-error').classList.remove('hidden');
+            }
+        });
+
+        function updateAdminDashboard() {
+            let totalAdults = 0;
+            let totalChildren = 0;
+            let yesCount = 0;
+            let noCount = 0;
+
+            rsvpList.forEach(item => {
+                if (item.attending === 'oui') {
+                    yesCount++;
+                    totalAdults += Number(item.adults || 0);
+                    totalChildren += Number(item.children || 0);
+                } else {
+                    noCount++;
+                }
+            });
+
+            document.getElementById('stat-total-guests').textContent = totalAdults + totalChildren;
+            document.getElementById('stat-breakdown').textContent = `${totalAdults} adulte(s), ${totalChildren} enfant(s)`;
+            document.getElementById('stat-yes-count').textContent = yesCount;
+            document.getElementById('stat-no-count').textContent = noCount;
+            document.getElementById('stat-photos-count').textContent = photosList.length;
+
+            const tbody = document.getElementById('rsvp-table-body');
+            if (rsvpList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-charcoal/50">Aucune réponse enregistrée pour le moment.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = rsvpList.map(r => {
+                const isYes = r.attending === 'oui';
+                const badge = isYes
+                    ? `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sage-light text-sage-dark">Présent</span>`
+                    : `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-light/60 text-gold-dark">Absent</span>`;
+                const guestsInfo = isYes
+                    ? `${r.adults || 0} ad.${r.children > 0 ? ` + ${r.children} enf.` : ''}`
+                    : '-';
+
+                return `
+                    <tr class="hover:bg-ivory/70">
+                        <td class="py-3 px-4 font-medium text-charcoal">${escapeHtml(r.firstName)} ${escapeHtml(r.lastName)}</td>
+                        <td class="py-3 px-4">${badge}</td>
+                        <td class="py-3 px-4 text-charcoal/80">${guestsInfo}</td>
+                        <td class="py-3 px-4 text-charcoal/70 text-xs">${escapeHtml(r.dietary || '-')}</td>
+                        <td class="py-3 px-4 text-charcoal/70 text-xs max-w-xs truncate" title="${escapeHtml(r.message || '')}">${escapeHtml(r.message || '-')}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Génération du QR Code dans l'Espace Mariés
+        function generateWeddingQRCode() {
+            const container = document.getElementById('qrcode-container');
+            if (!container) return;
+            container.innerHTML = '';
+            new QRCode(container, {
+                text: window.location.href,
+                width: 150,
+                height: 150,
+                colorDark: "#2C2E2D",
+                colorLight: "#FFFFFF",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+            qrGenerated = true;
+        }
+
+        function triggerQRCodeDownload() {
+            const qrImg = document.querySelector('#qrcode-container img');
+            const qrCanvas = document.querySelector('#qrcode-container canvas');
+            let dataUrl = '';
+
+            if (qrCanvas) {
+                dataUrl = qrCanvas.toDataURL('image/png');
+            } else if (qrImg && qrImg.src) {
+                dataUrl = qrImg.src;
+            }
+
+            if (dataUrl) {
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = 'FlashCode-Mariage-Corentin-Kelly.png';
+                link.click();
+                showToast("QR Code téléchargé !");
+            } else {
+                showToast("Impossible de préparer l'image du QR Code.", "error");
+            }
+        }
+
+        function triggerCopyWeddingLink() {
+            const urlToCopy = window.location.href;
+            const tempInput = document.createElement('input');
+            tempInput.value = urlToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Lien copié dans le presse-papiers !");
+        }
+
+        // Télécharger le QR Code en PNG (depuis l'Espace Mariés)
+        document.getElementById('download-qr-btn').addEventListener('click', triggerQRCodeDownload);
+
+        // Copier le lien du site (depuis l'accueil ou l'Espace Mariés)
+        document.getElementById('hero-copy-link-btn').addEventListener('click', triggerCopyWeddingLink);
+        document.getElementById('copy-link-btn').addEventListener('click', triggerCopyWeddingLink);
+
+        // Export CSV de la liste des invités
+        document.getElementById('export-csv-btn').addEventListener('click', () => {
+            if (rsvpList.length === 0) {
+                showToast("Aucune donnée à exporter.", "error");
+                return;
+            }
+            const headers = ["Prénom", "Nom", "Présence", "Adultes", "Enfants", "Allergies / Régime", "Message"];
+            const rows = rsvpList.map(r => [
+                `"${(r.firstName || '').replace(/"/g, '""')}"`,
+                `"${(r.lastName || '').replace(/"/g, '""')}"`,
+                r.attending === 'oui' ? 'Oui' : 'Non',
+                r.adults || 0,
+                r.children || 0,
+                `"${(r.dietary || '').replace(/"/g, '""')}"`,
+                `"${(r.message || '').replace(/"/g, '""')}"`
+            ]);
+
+            const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "Liste-Invites-Mariage-2027.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            showToast("Liste exportée en CSV !");
+        });
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Lancement au chargement
+        renderPublicSchedule();
+        initApp();
+    </script>
+</body>
+</html>
