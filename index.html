@@ -1,818 +1,528 @@
-<index html>
+<index.html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notre Mariage — Corentin & Kelly | 28 Juin 2027</title>
-    <!-- Tailwind CSS -->
+    <title>Corentin & Kelly — Mariage du 28 Juin 2027</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cormorant Garamond (Titres) & Plus Jakarta Sans (Texte) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- QRCode.js pour générer le Flash Code dans l'espace mariés -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        ivory: '#FAF8F5',
-                        sand: '#F2EDE4',
-                        sage: {
-                            light: '#E6ECE8',
-                            DEFAULT: '#6B8273',
-                            dark: '#4A5D51'
-                        },
-                        gold: {
-                            light: '#E8DCC4',
-                            DEFAULT: '#B89B67',
-                            dark: '#967B49'
-                        },
-                        charcoal: '#2C2E2D'
-                    },
-                    fontFamily: {
-                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Droid+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #FAF8F5;
-            color: #2C2E2D;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
+        body, h1, h2, h3, h4, p, a, span, button, input, select, textarea, label, div {
+            font-family: 'Droid Serif', Georgia, serif !important;
         }
-        h1, h2, h3, .font-serif {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #FAF8F5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D4CFC5;
-            border-radius: 9999px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #6B8273;
-        }
-        /* Masonry Grid pour la galerie */
-        .masonry-grid {
-            column-count: 2;
-            column-gap: 1rem;
-        }
-        @media (min-width: 768px) {
-            .masonry-grid {
-                column-count: 3;
-                column-gap: 1.5rem;
-            }
-        }
-        @media (min-width: 1024px) {
-            .masonry-grid {
-                column-count: 4;
-            }
-        }
-        .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 1rem;
-        }
-        @media (min-width: 768px) {
-            .masonry-item {
-                margin-bottom: 1.5rem;
-            }
-        }
+        .bg-cream { background-color: #FAF7F2; }
+        .text-sage { color: #5C6B57; }
+        .bg-sage { background-color: #5C6B57; }
+        .border-sage { border-color: #5C6B57; }
+        .text-terracotta { color: #B87D65; }
+        .bg-terracotta { background-color: #B87D65; }
     </style>
 </head>
-<body class="antialiased selection:bg-sage-light selection:text-sage-dark">
+<body class="bg-cream text-stone-800 antialiased selection:bg-stone-200">
 
-    <!-- Toast Notification Container (Remplace alert()) -->
-    <div id="toast-container" class="fixed bottom-5 right-5 left-5 sm:left-auto sm:w-96 z-50 flex flex-col gap-2 pointer-events-none"></div>
-
-    <!-- Navigation Sticky -->
-    <nav class="sticky top-0 z-40 bg-ivory/90 backdrop-blur-md border-b border-sand transition-all">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="#accueil" class="font-serif text-2xl sm:text-3xl font-semibold tracking-wide text-charcoal">
-                C <span class="text-gold italic font-normal">&amp;</span> K
-            </a>
-            <div class="flex items-center gap-2 sm:gap-6 text-sm font-medium">
-                <a href="#programme" class="hidden sm:inline-block text-charcoal/80 hover:text-sage-dark transition">Le Jour J</a>
-                <a href="#rsvp" class="px-3 py-2 rounded-full text-charcoal/90 hover:bg-sand transition">Répondre (RSVP)</a>
-                <a href="#galerie" class="px-3 py-2 rounded-full text-charcoal/90 hover:bg-sand transition">Album Photos</a>
-                <button id="open-admin-btn" class="p-2.5 rounded-full bg-sand/80 hover:bg-sage-light text-charcoal/80 hover:text-sage-dark transition flex items-center gap-1.5" title="Espace Mariés">
-                    <i data-lucide="lock" class="w-4 h-4"></i>
-                    <span class="hidden md:inline text-xs font-semibold">Espace Mariés</span>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-stone-200/80">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+            <a href="#accueil" class="text-lg font-bold tracking-wide text-stone-800 shrink-0">C & K</a>
+            <div class="hidden md:flex items-center space-x-6 text-sm text-stone-600">
+                <a href="#programme" class="hover:text-sage transition">Programme</a>
+                <a href="#infos" class="hover:text-sage transition">Infos & Accès</a>
+                <a href="#logement" class="hover:text-sage transition">Où loger ?</a>
+                <a href="#rsvp" class="hover:text-sage transition">RSVP</a>
+                <a href="#photos" class="hover:text-sage transition">Photos</a>
+            </div>
+            <div class="flex items-center gap-2">
+                <a href="#rsvp" class="bg-sage text-white text-xs sm:text-sm px-3.5 py-2 rounded-full hover:opacity-90 transition shadow-sm">
+                    Confirmer
+                </a>
+                <button onclick="openAdminModal()" class="flex items-center gap-1.5 bg-stone-800 text-white text-xs sm:text-sm px-3 py-2 rounded-full hover:bg-stone-700 transition shadow-sm" title="Espace Mariés">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    <span>Espace Mariés</span>
                 </button>
             </div>
         </div>
+        <!-- Mobile Sub-nav -->
+        <div class="flex md:hidden justify-around border-t border-stone-200/60 py-2 text-xs text-stone-600 bg-cream">
+            <a href="#programme" class="hover:text-sage">Programme</a>
+            <a href="#infos" class="hover:text-sage">Accès</a>
+            <a href="#logement" class="hover:text-sage">Où loger ?</a>
+            <a href="#rsvp" class="hover:text-sage">RSVP</a>
+            <a href="#photos" class="hover:text-sage">Photos</a>
+        </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header id="accueil" class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 px-4 overflow-hidden">
-        <!-- Décorations florales minimalistes SVG en arrière-plan -->
-        <div class="absolute top-0 left-0 w-64 h-64 bg-sage-light/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-        <div class="absolute bottom-0 right-0 w-80 h-80 bg-gold-light/40 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
-
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <p class="uppercase tracking-[0.25em] text-xs sm:text-sm text-sage-dark font-semibold mb-4">
-                Nous nous disons Oui
-            </p>
-            <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-charcoal leading-tight mb-6">
-                Corentin <span class="text-gold italic font-light">&amp;</span> Kelly
+    <!-- Hero Section -->
+    <header id="accueil" class="relative py-16 sm:py-24 px-4 text-center overflow-hidden">
+        <div class="max-w-3xl mx-auto">
+            <p class="uppercase tracking-[0.25em] text-xs sm:text-sm text-terracotta mb-4">Nous nous disons oui</p>
+            <h1 class="text-4xl sm:text-6xl font-bold text-stone-800 mb-6 tracking-tight">
+                Corentin <span class="italic font-normal text-terracotta">&</span> Kelly
             </h1>
-            <div class="flex items-center justify-center gap-4 mb-6">
-                <span class="h-px w-12 sm:w-20 bg-gold/60"></span>
-                <p class="font-serif text-2xl sm:text-3xl italic text-charcoal/90">
-                    Samedi 28 Juin 2027
-                </p>
-                <span class="h-px w-12 sm:w-20 bg-gold/60"></span>
+            <p class="text-lg sm:text-xl text-stone-600 mb-2">Samedi 28 Juin 2027</p>
+            <p class="text-sm sm:text-base text-stone-500 mb-10">Le Rheu • Ille-et-Vilaine</p>
+
+            <!-- Encart Rendez-vous Église du Rheu (remplace le décompte) -->
+            <div class="max-w-xl mx-auto bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
+                <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cream text-terracotta mb-3">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <p class="uppercase tracking-[0.2em] text-xs text-sage font-bold mb-2">Rendez-vous de la cérémonie</p>
+                <h2 id="hero-church-time" class="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">14h30 — Église du Rheu</h2>
+                <p id="hero-church-address" class="text-sm sm:text-base text-stone-600">Place de l'Église, 35650 Le Rheu</p>
             </div>
 
-            <!-- Compte à rebours dynamique jusqu'au 28 Juin 2027 à 14h30 -->
-            <div id="countdown-container" class="inline-flex items-center justify-center gap-3 sm:gap-6 bg-white/80 backdrop-blur-sm border border-sand px-6 py-3 rounded-2xl shadow-sm mb-8">
-                <div class="text-center">
-                    <span id="cd-days" class="font-serif text-2xl sm:text-3xl font-bold text-sage-dark block leading-none">--</span>
-                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Jours</span>
-                </div>
-                <span class="text-gold font-serif text-xl">:</span>
-                <div class="text-center">
-                    <span id="cd-hours" class="font-serif text-2xl sm:text-3xl font-bold text-charcoal block leading-none">--</span>
-                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Heures</span>
-                </div>
-                <span class="text-gold font-serif text-xl">:</span>
-                <div class="text-center">
-                    <span id="cd-minutes" class="font-serif text-2xl sm:text-3xl font-bold text-charcoal block leading-none">--</span>
-                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Min</span>
-                </div>
-                <span class="text-gold font-serif text-xl">:</span>
-                <div class="text-center">
-                    <span id="cd-seconds" class="font-serif text-2xl sm:text-3xl font-bold text-gold-dark block leading-none">--</span>
-                    <span class="text-[10px] uppercase tracking-wider text-charcoal/60">Sec</span>
-                </div>
-            </div>
-
-            <p class="text-charcoal/75 max-w-xl mx-auto text-base sm:text-lg leading-relaxed mb-10">
-                C'est avec une immense joie que nous vous convions à célébrer notre union au cœur de la Bretagne. Merci de nous confirmer votre présence ci-dessous et de partager vos plus beaux souvenirs photo !
-            </p>
-
-            <!-- Boutons d'action principaux (Optimisés tactile) -->
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#rsvp" class="w-full sm:w-auto px-8 py-4 rounded-full bg-sage text-white font-medium shadow-md hover:bg-sage-dark active:scale-[0.98] transition flex items-center justify-center gap-2">
-                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
-                    <span>Confirmer ma présence</span>
+            <div class="flex flex-col sm:flex-row justify-center gap-3">
+                <a href="#rsvp" class="bg-sage text-white px-8 py-3.5 rounded-full text-sm sm:text-base hover:opacity-90 transition shadow-sm">
+                    Répondre à l'invitation
                 </a>
-                <a href="#galerie" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white border border-gold/50 text-charcoal font-medium shadow-sm hover:bg-sand/50 active:scale-[0.98] transition flex items-center justify-center gap-2">
-                    <i data-lucide="camera" class="w-5 h-5 text-gold-dark"></i>
-                    <span>Partager mes photos</span>
+                <a href="#programme" class="bg-white border border-stone-300 text-stone-700 px-8 py-3.5 rounded-full text-sm sm:text-base hover:bg-stone-50 transition">
+                    Découvrir la journée
                 </a>
-                <button type="button" id="hero-copy-link-btn" class="w-full sm:w-auto px-6 py-4 rounded-full bg-sand/90 hover:bg-gold-light/60 text-charcoal font-medium border border-gold/40 transition flex items-center justify-center gap-2">
-                    <i data-lucide="link" class="w-5 h-5 text-sage-dark"></i>
-                    <span>Copier le lien</span>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- INFORMATIONS PRATIQUES / PROGRAMME (Rendu dynamique & personnalisable) -->
-    <section id="programme" class="py-16 px-4 bg-sand/50 border-y border-sand">
-        <div class="max-w-5xl mx-auto">
+    <!-- Programme -->
+    <section id="programme" class="py-16 px-4 bg-white border-y border-stone-200/70">
+        <div class="max-w-3xl mx-auto">
             <div class="text-center mb-12">
-                <span class="text-xs uppercase tracking-[0.2em] text-gold-dark font-semibold">Les temps forts</span>
-                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal mt-1">Le Programme de la Journée</h2>
+                <p class="uppercase tracking-[0.2em] text-xs text-terracotta mb-2">Déroulement</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-stone-800">Le Programme de la Journée</h2>
             </div>
 
-            <div id="schedule-public-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Carte 1 par défaut -->
-                <div class="bg-ivory p-8 rounded-3xl border border-sand shadow-sm text-center">
-                    <div class="w-12 h-12 rounded-2xl bg-sage-light text-sage-dark flex items-center justify-center mx-auto mb-5">
-                        <i data-lucide="heart" class="w-6 h-6"></i>
-                    </div>
-                    <p class="text-sm font-semibold text-gold-dark tracking-wider uppercase mb-1">14h30</p>
-                    <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2">Cérémonie Civile &amp; Laïque</h3>
-                    <p class="text-sm text-charcoal/75 leading-relaxed">
-                        Mairie de Mordelles (35310 Mordelles) suivie d'une cérémonie dans les jardins du Domaine de la Roche.
+            <div id="schedule-list" class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-stone-200">
+                <!-- Généré dynamiquement par JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Infos & Accès -->
+    <section id="infos" class="py-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="uppercase tracking-[0.2em] text-xs text-terracotta mb-2">Pratique</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-stone-800">Infos & Accès</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 sm:p-8 rounded-2xl border border-stone-200/80 shadow-sm">
+                    <h3 class="text-xl font-bold text-stone-800 mb-3">Église Saint-Pierre du Rheu</h3>
+                    <p class="text-sm text-stone-600 mb-4 leading-relaxed">
+                        Rendez-vous dès <strong>14h30</strong> sur le parvis de l'église au cœur du Rheu. Des stationnements gratuits sont disponibles à proximité immédiate (Place de l'Église et parking de la Mairie du Rheu).
                     </p>
+                    <p class="text-xs text-stone-500 mb-5">Adresse : Place de l'Église, 35650 Le Rheu</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Eglise+Saint+Pierre+35650+Le+Rheu" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm text-sage font-bold hover:underline">
+                        <span>Ouvrir dans Google Maps</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                    </a>
                 </div>
 
-                <!-- Carte 2 par défaut -->
-                <div class="bg-ivory p-8 rounded-3xl border border-sand shadow-sm text-center">
-                    <div class="w-12 h-12 rounded-2xl bg-sage-light text-sage-dark flex items-center justify-center mx-auto mb-5">
-                        <i data-lucide="wine" class="w-6 h-6"></i>
-                    </div>
-                    <p class="text-sm font-semibold text-gold-dark tracking-wider uppercase mb-1">17h00</p>
-                    <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2">Vin d'Honneur</h3>
-                    <p class="text-sm text-charcoal/75 leading-relaxed">
-                        Cocktails, gourmandises bretonnes et musique acoustique sous les pommiers en fleurs.
+                <div class="bg-white p-6 sm:p-8 rounded-2xl border border-stone-200/80 shadow-sm">
+                    <h3 class="text-xl font-bold text-stone-800 mb-3">Réception & Soirée</h3>
+                    <p class="text-sm text-stone-600 mb-4 leading-relaxed">
+                        À l'issue de la cérémonie religieuse au Rheu, nous nous retrouverons autour du vin d'honneur suivi du dîner et de la soirée dansante.
                     </p>
-                </div>
-
-                <!-- Carte 3 par défaut -->
-                <div class="bg-ivory p-8 rounded-3xl border border-sand shadow-sm text-center">
-                    <div class="w-12 h-12 rounded-2xl bg-sage-light text-sage-dark flex items-center justify-center mx-auto mb-5">
-                        <i data-lucide="sparkles" class="w-6 h-6"></i>
-                    </div>
-                    <p class="text-sm font-semibold text-gold-dark tracking-wider uppercase mb-1">20h00</p>
-                    <h3 class="font-serif text-2xl font-semibold text-charcoal mb-2">Dîner &amp; Soirée Dansante</h3>
-                    <p class="text-sm text-charcoal/75 leading-relaxed">
-                        Grande tablée dans l'Orangerie du Domaine jusqu'au bout de la nuit !
-                    </p>
+                    <p class="text-xs text-stone-500 mb-5">Tenue de soirée champêtre & élégante souhaitée.</p>
+                    <a href="#rsvp" class="inline-flex items-center gap-2 text-sm text-terracotta font-bold hover:underline">
+                        <span>Confirmer votre venue</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION RSVP (Confirmation de présence via Flash Code) -->
-    <section id="rsvp" class="py-20 px-4">
+    <!-- Où loger ? -->
+    <section id="logement" class="py-16 px-4 bg-white border-y border-stone-200/70">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="uppercase tracking-[0.2em] text-xs text-terracotta mb-2">Hébergements</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-stone-800">Où loger ?</h2>
+                <p class="text-sm text-stone-600 mt-3 max-w-xl mx-auto">
+                    Voici quelques adresses situées directement au Rheu ou à moins de 10 minutes à l'ouest de Rennes pour profiter pleinement de la soirée.
+                </p>
+            </div>
+
+            <div id="lodging-list" class="grid md:grid-cols-3 gap-6">
+                <!-- Généré dynamiquement par JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="py-16 px-4">
         <div class="max-w-2xl mx-auto">
             <div class="text-center mb-10">
-                <span class="text-xs uppercase tracking-[0.2em] text-sage-dark font-semibold">Réponse souhaitée avant le 1er Avril 2027</span>
-                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal mt-1">Confirmez votre présence</h2>
-                <p class="text-charcoal/70 mt-3 text-sm sm:text-base">
-                    Vous avez scanné notre faire-part ? Remplissez ce formulaire rapide pour nous indiquer si vous serez des nôtres.
-                </p>
+                <p class="uppercase tracking-[0.2em] text-xs text-terracotta mb-2">Votre présence</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-stone-800">Confirmez votre réponse</h2>
+                <p class="text-sm text-stone-600 mt-2">Merci de nous répondre avant le 1er avril 2027.</p>
             </div>
 
-            <!-- Carte Formulaire RSVP -->
-            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-lg shadow-charcoal/5 border border-sand">
-                <form id="rsvp-form" class="space-y-6">
-                    <!-- Choix Présence (Gros boutons tactiles) -->
-                    <div>
-                        <label class="block text-sm font-semibold text-charcoal mb-3">Serez-vous présent(e) à notre mariage ? *</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="cursor-pointer">
-                                <input type="radio" name="attending" value="oui" class="peer sr-only" checked required>
-                                <div class="p-4 rounded-2xl border-2 border-sand peer-checked:border-sage peer-checked:bg-sage-light/40 transition flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-sage-light text-sage-dark flex items-center justify-center shrink-0">
-                                        <i data-lucide="check" class="w-4 h-4"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm text-charcoal">Oui, avec grand plaisir !</p>
-                                        <p class="text-xs text-charcoal/60">Je serai là pour fêter ça</p>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label class="cursor-pointer">
-                                <input type="radio" name="attending" value="non" class="peer sr-only" required>
-                                <div class="p-4 rounded-2xl border-2 border-sand peer-checked:border-gold peer-checked:bg-gold-light/30 transition flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-sand text-charcoal/70 flex items-center justify-center shrink-0">
-                                        <i data-lucide="x" class="w-4 h-4"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-sm text-charcoal">Non, malheureusement</p>
-                                        <p class="text-xs text-charcoal/60">Je penserai fort à vous</p>
-                                    </div>
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Prénom & Nom -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label for="firstName" class="block text-sm font-medium text-charcoal mb-1.5">Prénom *</label>
-                            <input type="text" id="firstName" required placeholder="Ex: Thomas"
-                                class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition">
-                        </div>
-                        <div>
-                            <label for="lastName" class="block text-sm font-medium text-charcoal mb-1.5">Nom *</label>
-                            <input type="text" id="lastName" required placeholder="Ex: Martin"
-                                class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition">
-                        </div>
-                    </div>
-
-                    <!-- Détails si présent (Nombre d'adultes / enfants + Régime alimentaire) -->
-                    <div id="attending-details" class="space-y-5 transition-all">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <label for="adults" class="block text-sm font-medium text-charcoal mb-1.5">Nombre d'adultes</label>
-                                <select id="adults" class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage outline-none transition">
-                                    <option value="1">1 adulte</option>
-                                    <option value="2" selected>2 adultes</option>
-                                    <option value="3">3 adultes</option>
-                                    <option value="4">4 adultes</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="children" class="block text-sm font-medium text-charcoal mb-1.5">Nombre d'enfants</label>
-                                <select id="children" class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage outline-none transition">
-                                    <option value="0" selected>Aucun enfant</option>
-                                    <option value="1">1 enfant</option>
-                                    <option value="2">2 enfants</option>
-                                    <option value="3">3 enfants</option>
-                                    <option value="4">4 enfants</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="dietary" class="block text-sm font-medium text-charcoal mb-1.5">Allergies ou régime alimentaire particulier</label>
-                            <input type="text" id="dietary" placeholder="Végétarien, sans gluten, allergie aux arachides..."
-                                class="w-full px-4 py-3.5 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition">
-                        </div>
-                    </div>
-
-                    <!-- Petit mot pour les mariés -->
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-charcoal mb-1.5">Un petit mot pour les mariés (facultatif)</label>
-                        <textarea id="message" rows="3" placeholder="Une chanson que vous voulez absolument entendre sur la piste ?"
-                            class="w-full px-4 py-3 rounded-2xl bg-ivory border border-sand focus:border-sage focus:ring-2 focus:ring-sage/20 outline-none transition"></textarea>
-                    </div>
-
-                    <!-- Bouton d'envoi -->
-                    <button type="submit" id="rsvp-submit-btn"
-                        class="w-full py-4 rounded-2xl bg-sage hover:bg-sage-dark text-white font-semibold shadow-md transition active:scale-[0.99] flex items-center justify-center gap-2">
-                        <i data-lucide="send" class="w-5 h-5"></i>
-                        <span>Envoyer ma réponse</span>
-                    </button>
-                </form>
-
-                <!-- Message de confirmation affiché après soumission -->
-                <div id="rsvp-success-box" class="hidden text-center py-8 space-y-4">
-                    <div class="w-16 h-16 rounded-full bg-sage-light text-sage-dark flex items-center justify-center mx-auto">
-                        <i data-lucide="check-circle-2" class="w-9 h-9"></i>
-                    </div>
-                    <h3 class="font-serif text-3xl font-semibold text-charcoal">Merci pour votre réponse !</h3>
-                    <p id="rsvp-success-text" class="text-charcoal/75 max-w-md mx-auto text-sm sm:text-base"></p>
-                    <button type="button" id="rsvp-reset-btn" class="mt-4 px-6 py-2.5 rounded-full bg-sand hover:bg-gold-light/60 text-sm font-medium text-charcoal transition">
-                        Enregistrer une autre réponse
-                    </button>
+            <form id="rsvp-form" class="bg-white p-6 sm:p-10 rounded-2xl border border-stone-200/80 shadow-sm space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-stone-700 mb-1.5">Nom & Prénom(s)</label>
+                    <input type="text" id="guest-name" required placeholder="Ex : Marie & Thomas Dupont" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-sage text-sm">
                 </div>
-            </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-stone-700 mb-1.5">Serez-vous des nôtres ?</label>
+                        <select id="guest-attendance" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-sage text-sm bg-white">
+                            <option value="Oui, avec joie !">Oui, avec joie !</option>
+                            <option value="Non, malheureusement">Non, malheureusement</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-stone-700 mb-1.5">Nombre de personnes (adultes + enfants)</label>
+                        <input type="number" id="guest-count" min="1" max="10" value="2" class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-sage text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-stone-700 mb-1.5">Allergies, régime alimentaire ou petit mot</label>
+                    <textarea id="guest-notes" rows="3" placeholder="Intolérances alimentaires, besoin d'une chaise haute, chanson préférée..." class="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:outline-none focus:border-sage text-sm"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-sage text-white py-3.5 rounded-full text-sm sm:text-base font-bold hover:opacity-90 transition shadow-sm">
+                    Envoyer ma réponse
+                </button>
+
+                <div id="rsvp-feedback" class="hidden text-center p-4 rounded-xl bg-stone-100 text-sage text-sm font-bold">
+                    Merci ! Votre réponse a bien été enregistrée.
+                </div>
+            </form>
         </div>
     </section>
 
-    <!-- SECTION GALERIE PHOTOS PARTICIPATIVE -->
-    <section id="galerie" class="py-20 px-4 bg-sand/40 border-t border-sand">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <span class="text-xs uppercase tracking-[0.2em] text-gold-dark font-semibold">Souvenirs partagés</span>
-                <h2 class="font-serif text-4xl sm:text-5xl text-charcoal mt-1">L'Album Photo du Mariage</h2>
-                <p class="text-charcoal/75 mt-3 text-sm sm:text-base">
-                    Capturez les coulisses, les fous rires et la piste de danse ! Importez vos photos directement depuis votre téléphone pour créer notre album souvenir collectif.
-                </p>
+    <!-- Galerie Photos -->
+    <section id="photos" class="py-16 px-4 bg-white border-t border-stone-200/70">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="uppercase tracking-[0.2em] text-xs text-terracotta mb-2">Souvenirs</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-stone-800 mb-4">Album Photo des Invités</h2>
+            <p class="text-sm text-stone-600 max-w-xl mx-auto mb-8">
+                Partagez les plus beaux instants de la journée directement depuis votre téléphone !
+            </p>
+
+            <label class="inline-flex items-center gap-2 bg-terracotta text-white px-6 py-3.5 rounded-full text-sm font-bold cursor-pointer hover:opacity-90 transition shadow-sm mb-10">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                <span>Ajouter mes photos</span>
+                <input type="file" id="photo-input" accept="image/*" multiple class="hidden">
+            </label>
+
+            <div id="photo-gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <!-- Photos ajoutées -->
             </div>
-
-            <!-- Zone d'importation de photos depuis le téléphone -->
-            <div class="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-3xl shadow-md border border-sand mb-14">
-                <div class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div>
-                            <label for="photo-author" class="block text-xs font-semibold uppercase tracking-wider text-charcoal/70 mb-1">Votre prénom</label>
-                            <input type="text" id="photo-author" placeholder="Ex: Léa"
-                                class="w-full px-4 py-3 rounded-xl bg-ivory border border-sand focus:border-sage outline-none text-sm">
-                        </div>
-                        <div>
-                            <label for="photo-caption" class="block text-xs font-semibold uppercase tracking-wider text-charcoal/70 mb-1">Légende (facultatif)</label>
-                            <input type="text" id="photo-caption" placeholder="Ex: Trop beaux !"
-                                class="w-full px-4 py-3 rounded-xl bg-ivory border border-sand focus:border-sage outline-none text-sm">
-                        </div>
-                    </div>
-
-                    <!-- Bouton / Dropzone mobile-first pour sélectionner ou prendre des photos -->
-                    <label for="photo-input" id="drop-zone"
-                        class="block cursor-pointer border-2 border-dashed border-sage/50 hover:border-sage bg-sage-light/20 hover:bg-sage-light/40 rounded-2xl p-6 text-center transition">
-                        <input type="file" id="photo-input" accept="image/*" multiple class="hidden">
-                        <div class="w-12 h-12 rounded-full bg-white text-sage-dark shadow-sm flex items-center justify-center mx-auto mb-3">
-                            <i data-lucide="image-plus" class="w-6 h-6"></i>
-                        </div>
-                        <p class="font-semibold text-charcoal text-base">Ajouter des photos depuis mon téléphone</p>
-                        <p class="text-xs text-charcoal/60 mt-1">Appuyez ici pour ouvrir votre galerie ou l'appareil photo (plusieurs photos possibles)</p>
-                    </label>
-
-                    <!-- Barre de progression lors de l'upload -->
-                    <div id="upload-progress-container" class="hidden space-y-2 pt-2">
-                        <div class="flex justify-between text-xs font-medium text-sage-dark">
-                            <span id="upload-status-text">Préparation et envoi des photos...</span>
-                            <span id="upload-percent">0%</span>
-                        </div>
-                        <div class="w-full bg-sand rounded-full h-2.5 overflow-hidden">
-                            <div id="upload-progress-bar" class="bg-sage h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Compteur de photos -->
-            <div class="flex items-center justify-between mb-6 px-1">
-                <h3 class="font-serif text-2xl sm:text-3xl text-charcoal">
-                    Photos des invités <span id="photo-count-badge" class="text-base font-sans font-normal text-charcoal/60 ml-1">(0)</span>
-                </h3>
-                <span class="text-xs text-charcoal/60 flex items-center gap-1">
-                    <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Mise à jour en direct
-                </span>
-            </div>
-
-            <!-- Grille Masonry des photos -->
-            <div id="photo-gallery-grid" class="masonry-grid">
-                <!-- Les photos seront injectées ici dynamiquement -->
-            </div>
-
-            <!-- État vide de la galerie -->
-            <div id="gallery-empty-state" class="text-center py-14 bg-white/60 rounded-3xl border border-sand">
-                <div class="w-14 h-14 rounded-full bg-sand text-charcoal/50 flex items-center justify-center mx-auto mb-3">
-                    <i data-lucide="camera-off" class="w-7 h-7"></i>
-                </div>
-                <p class="font-serif text-2xl text-charcoal">Aucune photo pour le moment</p>
-                <p class="text-sm text-charcoal/65 mt-1">Soyez le premier à immortaliser ce moment en ajoutant un cliché ci-dessus !</p>
-            </div>
+            <p id="no-photos-msg" class="text-xs text-stone-400 italic">Aucune photo ajoutée pour le moment. Soyez les premiers !</p>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-charcoal text-ivory/80 py-12 px-4 text-center">
-        <p class="font-serif text-3xl text-white mb-2">Corentin <span class="text-gold italic">&amp;</span> Kelly</p>
-        <p class="text-xs tracking-widest uppercase text-ivory/50 mb-6">28 Juin 2027 • Mordelles, Bretagne</p>
-        <p class="text-xs text-ivory/40">Fait avec amour pour célébrer notre union entourés de nos proches.</p>
+    <!-- Footer -->
+    <footer class="py-10 px-4 text-center border-t border-stone-200 bg-cream">
+        <p class="text-lg font-bold text-stone-800 mb-1">Corentin & Kelly</p>
+        <p class="text-xs text-stone-500 mb-4">28 Juin 2027 • Église du Rheu (35650)</p>
+        <button onclick="openAdminModal()" class="text-xs text-stone-500 underline hover:text-stone-800">
+            Accès Espace Mariés (PIN)
+        </button>
     </footer>
 
-    <!-- LIGHTBOX MODAL (Agrandissement photo) -->
-    <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 hidden flex-col items-center justify-center p-4">
-        <div class="w-full max-w-4xl flex justify-between items-center text-white mb-3">
-            <div>
-                <p id="lightbox-author" class="font-semibold text-sm"></p>
-                <p id="lightbox-caption" class="text-xs text-white/70"></p>
+    <!-- Modal Espace Mariés -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-xl max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-stone-200 pb-4 mb-6">
+                <h3 class="text-xl font-bold text-stone-800">Espace Mariés — Administration</h3>
+                <button onclick="closeAdminModal()" class="text-stone-400 hover:text-stone-700 text-2xl leading-none">&times;</button>
             </div>
-            <div class="flex items-center gap-3">
-                <a id="lightbox-download" href="#" download="souvenir-mariage.jpg" class="p-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition" title="Télécharger la photo">
-                    <i data-lucide="download" class="w-5 h-5"></i>
-                </a>
-                <button id="lightbox-close" class="p-2.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition" title="Fermer">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+
+            <!-- Écran PIN -->
+            <div id="pin-screen" class="text-center py-6">
+                <p class="text-sm text-stone-600 mb-4">Veuillez saisir le code PIN des mariés :</p>
+                <input type="password" id="admin-pin-input" maxlength="4" placeholder="••••" class="text-center text-2xl tracking-widest w-40 px-4 py-2 border border-stone-300 rounded-xl mb-4 focus:outline-none focus:border-sage">
+                <br>
+                <button onclick="checkPin()" class="bg-sage text-white px-6 py-2.5 rounded-full text-sm font-bold hover:opacity-90">
+                    Déverrouiller
                 </button>
-            </div>
-        </div>
-        <img id="lightbox-img" src="" alt="Souvenir mariage" class="max-h-[80vh] max-w-full rounded-xl object-contain shadow-2xl">
-    </div>
-
-    <!-- MODAL ESPACE MARIÉS (PIN + Tableau de bord RSVP + Générateur QR Code) -->
-    <div id="admin-modal" class="fixed inset-0 z-50 bg-charcoal/70 backdrop-blur-sm hidden items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-ivory w-full max-w-4xl rounded-3xl shadow-2xl border border-sand overflow-hidden my-8">
-            <!-- Header Modal -->
-            <div class="bg-white px-6 py-4 border-b border-sand flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-sage-light text-sage-dark flex items-center justify-center">
-                        <i data-lucide="crown" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-2xl font-semibold text-charcoal leading-none">Espace Mariés</h3>
-                        <p class="text-xs text-charcoal/60">Gestion des invités &amp; Flash Code</p>
-                    </div>
-                </div>
-                <button id="close-admin-btn" class="p-2 rounded-full hover:bg-sand text-charcoal/70 transition">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
+                <p id="pin-error" class="hidden text-xs text-red-600 mt-3">Code PIN incorrect.</p>
             </div>
 
-            <!-- Écran de verrouillage PIN -->
-            <div id="admin-pin-screen" class="p-8 sm:p-12 text-center max-w-md mx-auto">
-                <div class="w-14 h-14 rounded-2xl bg-gold-light/50 text-gold-dark flex items-center justify-center mx-auto mb-4">
-                    <i data-lucide="key-round" class="w-7 h-7"></i>
-                </div>
-                <h4 class="font-serif text-3xl text-charcoal mb-2">Accès réservé aux mariés</h4>
-                <p class="text-sm text-charcoal/70 mb-6">Entrez le code secret pour consulter les réponses RSVP et récupérer votre QR Code (Code par défaut : <strong>2027</strong>).</p>
-                <form id="pin-form" class="space-y-4">
-                    <input type="password" id="pin-input" maxlength="6" placeholder="••••" inputmode="numeric"
-                        class="w-48 mx-auto block text-center text-2xl tracking-[0.5em] font-bold py-3 px-4 rounded-2xl bg-white border border-sand focus:border-sage outline-none">
-                    <p id="pin-error" class="text-xs text-red-600 hidden">Code incorrect. Indice : l'année du mariage (2027).</p>
-                    <button type="submit" class="w-full py-3.5 rounded-2xl bg-sage hover:bg-sage-dark text-white font-semibold transition">
-                        Déverrouiller
-                    </button>
-                </form>
-            </div>
-
-            <!-- Tableau de bord déverrouillé -->
-            <div id="admin-dashboard" class="hidden p-6 sm:p-8 space-y-8 max-h-[80vh] overflow-y-auto">
-                
-                <!-- Statistiques rapides -->
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                    <div class="bg-white p-4 rounded-2xl border border-sand">
-                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Présents (Total)</p>
-                        <p id="stat-total-guests" class="font-serif text-3xl font-bold text-sage-dark mt-1">0</p>
-                        <p id="stat-breakdown" class="text-xs text-charcoal/60 mt-0.5">0 adultes, 0 enfants</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-2xl border border-sand">
-                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Réponses "Oui"</p>
-                        <p id="stat-yes-count" class="font-serif text-3xl font-bold text-charcoal mt-1">0</p>
-                        <p class="text-xs text-charcoal/60 mt-0.5">foyers confirmés</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-2xl border border-sand">
-                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Réponses "Non"</p>
-                        <p id="stat-no-count" class="font-serif text-3xl font-bold text-gold-dark mt-1">0</p>
-                        <p class="text-xs text-charcoal/60 mt-0.5">absents</p>
-                    </div>
-                    <div class="bg-white p-4 rounded-2xl border border-sand">
-                        <p class="text-xs text-charcoal/60 uppercase font-semibold">Photos partagées</p>
-                        <p id="stat-photos-count" class="font-serif text-3xl font-bold text-charcoal mt-1">0</p>
-                        <p class="text-xs text-charcoal/60 mt-0.5">clichés en ligne</p>
-                    </div>
-                </div>
-
-                <!-- Section Générateur de QR Code pour les faire-part -->
-                <div class="bg-white p-6 rounded-2xl border border-sand flex flex-col sm:flex-row items-center gap-6">
-                    <div id="qrcode-container" class="p-3 bg-white border-2 border-gold/40 rounded-2xl shrink-0"></div>
-                    <div class="space-y-3 text-center sm:text-left flex-1">
-                        <span class="inline-block px-3 py-1 rounded-full bg-gold-light/50 text-gold-dark text-xs font-semibold">Pour vos faire-part &amp; tables</span>
-                        <h4 class="font-serif text-2xl font-semibold text-charcoal">Votre Flash Code (QR Code)</h4>
-                        <p class="text-sm text-charcoal/75 leading-relaxed">
-                            Téléchargez ce QR Code et imprimez-le sur vos faire-part pour que vos invités confirment leur présence, ou placez-le sur les tables le jour J pour qu'ils partagent leurs photos !
-                        </p>
-                        <div class="flex flex-wrap justify-center sm:justify-start gap-2 pt-1">
-                            <button type="button" id="download-qr-btn" class="px-4 py-2.5 rounded-xl bg-charcoal text-white text-xs font-semibold hover:bg-charcoal/85 transition flex items-center gap-1.5">
-                                <i data-lucide="download" class="w-4 h-4"></i> Télécharger le QR Code (PNG)
-                            </button>
-                            <button type="button" id="copy-link-btn" class="px-4 py-2.5 rounded-xl bg-sand text-charcoal text-xs font-semibold hover:bg-gold-light/60 transition flex items-center gap-1.5">
-                                <i data-lucide="link" class="w-4 h-4"></i> Copier le lien du site
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section Personnaliser le programme de la journée -->
-                <div class="bg-white p-6 rounded-2xl border border-sand space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                        <div>
-                            <span class="inline-block px-3 py-1 rounded-full bg-sage-light text-sage-dark text-xs font-semibold mb-1">Édition en direct</span>
-                            <h4 class="font-serif text-2xl font-semibold text-charcoal">Personnaliser le programme</h4>
-                            <p class="text-xs text-charcoal/70">Modifiez les horaires, titres et descriptions. Les changements s'affichent immédiatement pour vos invités.</p>
-                        </div>
-                        <button type="button" id="add-schedule-step-btn" class="px-4 py-2.5 rounded-xl bg-sand hover:bg-gold-light/60 text-charcoal text-xs font-semibold transition flex items-center gap-1.5 self-start sm:self-auto">
-                            <i data-lucide="plus" class="w-4 h-4"></i> Ajouter une étape
-                        </button>
-                    </div>
-
-                    <div id="admin-schedule-list" class="space-y-3">
-                        <!-- Étapes éditables générées dynamiquement -->
-                    </div>
-
-                    <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-sand">
-                        <button type="button" id="reset-schedule-btn" class="text-xs text-charcoal/60 hover:text-charcoal underline">
-                            Rétablir le programme par défaut
-                        </button>
-                        <button type="button" id="save-schedule-btn" class="px-6 py-3 rounded-xl bg-sage hover:bg-sage-dark text-white text-xs font-semibold shadow-sm transition flex items-center gap-2">
-                            <i data-lucide="save" class="w-4 h-4"></i> Enregistrer et publier le programme
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Liste des réponses RSVP -->
+            <!-- Tableau de bord Mariés -->
+            <div id="admin-dashboard" class="hidden space-y-8">
+                <!-- Résumé RSVP -->
                 <div>
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
-                        <h4 class="font-serif text-2xl font-semibold text-charcoal">Liste des réponses reçues</h4>
-                        <button type="button" id="export-csv-btn" class="px-4 py-2 rounded-xl bg-sage text-white text-xs font-semibold hover:bg-sage-dark transition flex items-center gap-1.5 self-start sm:self-auto">
-                            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i> Exporter en Excel / CSV
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <h4 class="font-bold text-stone-800">1. Suivi des réponses (RSVP)</h4>
+                        <button onclick="exportCSV()" class="bg-stone-800 text-white text-xs px-3 py-1.5 rounded-lg hover:bg-stone-700">
+                            Exporter en CSV
                         </button>
                     </div>
+                    <div id="rsvp-stats" class="text-xs text-stone-600 bg-cream p-3 rounded-xl mb-3"></div>
+                    <div id="rsvp-admin-list" class="space-y-2 max-h-48 overflow-y-auto text-xs"></div>
+                </div>
 
-                    <div class="bg-white rounded-2xl border border-sand overflow-x-auto">
-                        <table class="w-full text-left border-collapse text-sm">
-                            <thead>
-                                <tr class="border-b border-sand bg-sand/30 text-xs uppercase text-charcoal/70">
-                                    <th class="py-3 px-4">Invité</th>
-                                    <th class="py-3 px-4">Statut</th>
-                                    <th class="py-3 px-4">Personnes</th>
-                                    <th class="py-3 px-4">Allergies / Régime</th>
-                                    <th class="py-3 px-4">Message</th>
-                                </tr>
-                            </thead>
-                            <tbody id="rsvp-table-body" class="divide-y divide-sand">
-                                <tr>
-                                    <td colspan="5" class="py-8 text-center text-charcoal/50">Chargement des réponses...</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- Éditeur Rendez-vous Église -->
+                <div class="border-t border-stone-200 pt-6">
+                    <h4 class="font-bold text-stone-800 mb-3">2. Modifier l'heure de rendez-vous à l'Église du Rheu</h4>
+                    <div class="grid sm:grid-cols-2 gap-3 mb-3">
+                        <input type="text" id="edit-church-time" class="px-3 py-2 border border-stone-300 rounded-lg text-xs" placeholder="Ex : 14h30 — Église du Rheu">
+                        <input type="text" id="edit-church-address" class="px-3 py-2 border border-stone-300 rounded-lg text-xs" placeholder="Ex : Place de l'Église, 35650 Le Rheu">
+                    </div>
+                </div>
+
+                <!-- Éditeur Programme -->
+                <div class="border-t border-stone-200 pt-6">
+                    <h4 class="font-bold text-stone-800 mb-3">3. Modifier le programme</h4>
+                    <div id="edit-schedule-container" class="space-y-3"></div>
+                </div>
+
+                <!-- Éditeur Hébergements -->
+                <div class="border-t border-stone-200 pt-6">
+                    <h4 class="font-bold text-stone-800 mb-3">4. Modifier les hébergements (Où loger ?)</h4>
+                    <div id="edit-lodging-container" class="space-y-3"></div>
+                </div>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <button onclick="saveAdminEdits()" class="bg-sage text-white text-xs px-4 py-2.5 rounded-full font-bold hover:opacity-90">
+                        Enregistrer sur cet appareil
+                    </button>
+                    <button onclick="downloadUpdatedHTML()" class="bg-terracotta text-white text-xs px-4 py-2.5 rounded-full font-bold hover:opacity-90">
+                        Télécharger le fichier index.html mis à jour
+                    </button>
+                </div>
+
+                <!-- QR Code -->
+                <div class="border-t border-stone-200 pt-6">
+                    <h4 class="font-bold text-stone-800 mb-2">5. QR Code du site pour vos faire-part</h4>
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <div class="flex-1 w-full">
+                            <input type="url" id="qr-url-input" placeholder="Collez l'adresse de votre site (ex: https://...)" class="w-full px-3 py-2 border border-stone-300 rounded-lg text-xs mb-2">
+                            <button onclick="generateQR()" class="bg-stone-800 text-white text-xs px-4 py-2 rounded-lg">Générer le QR Code</button>
+                        </div>
+                        <div id="qrcode-box" class="p-3 bg-white border border-stone-200 rounded-xl"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- FIREBASE & APPLICATION LOGIC -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <script>
+        const DEFAULT_CHURCH = {
+            time: "14h30 — Église du Rheu",
+            address: "Place de l'Église, 35650 Le Rheu"
+        };
 
-        // Initialisation des icônes Lucide
-        lucide.createIcons();
-
-        // Configuration Firebase fournie par l'environnement
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'mariage-corentin-kelly-2027';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-
-        let db = null;
-        let auth = null;
-        let currentUser = null;
-        let rsvpList = [];
-        let photosList = [];
-
-        // Programme par défaut (modifiable par les mariés)
         const DEFAULT_SCHEDULE = [
-            {
-                icon: 'heart',
-                time: '14h30',
-                title: 'Cérémonie Civile & Laïque',
-                description: "Mairie de Mordelles (35310 Mordelles) suivie d'une cérémonie dans les jardins du Domaine de la Roche."
-            },
-            {
-                icon: 'wine',
-                time: '17h00',
-                title: "Vin d'Honneur",
-                description: 'Cocktails, gourmandises bretonnes et musique acoustique sous les pommiers en fleurs.'
-            },
-            {
-                icon: 'sparkles',
-                time: '20h00',
-                title: 'Dîner & Soirée Dansante',
-                description: "Grande tablée dans l'Orangerie du Domaine jusqu'au bout de la nuit !"
-            }
+            { time: "14h30", title: "Cérémonie Religieuse", desc: "Rendez-vous à l'Église Saint-Pierre du Rheu (35650)." },
+            { time: "16h30", title: "Vin d'Honneur", desc: "Photos de groupe, rafraîchissements et gourmandises au soleil." },
+            { time: "19h30", title: "Dîner de Réception", desc: "Repas festif et animations autour des mariés." },
+            { time: "23h00", title: "Ouverture de Bal", desc: "Soirée dansante jusqu'au bout de la nuit." }
         ];
 
-        let currentSchedule = JSON.parse(JSON.stringify(DEFAULT_SCHEDULE));
-// ... existing code ... -->
-        document.getElementById('open-admin-btn').addEventListener('click', () => {
-            adminModal.classList.remove('hidden');
-            adminModal.classList.add('flex');
-        });
+        const DEFAULT_LODGING = [
+            { name: "Hôtel Restaurant La Croix Verte", distance: "Au Rheu (centre)", info: "Chambres confortables au cœur du Rheu, à proximité immédiate de l'église." },
+            { name: "Brit Hotel Rennes Le Rheu", distance: "À 3 min du Rheu", info: "Accès direct RN24, parking gratuit et petit-déjeuner buffet." },
+            { name: "Hôtel Restaurant Le Relais de Brocéliande", distance: "À 8 min (Saint-Gilles)", info: "Cadre calme à l'ouest de Rennes, idéal pour un week-end au vert." }
+        ];
 
-        document.getElementById('close-admin-btn').addEventListener('click', () => {
-            adminModal.classList.add('hidden');
-            adminModal.classList.remove('flex');
-        });
+        let churchData = JSON.parse(localStorage.getItem('ck_church')) || DEFAULT_CHURCH;
+        let scheduleData = JSON.parse(localStorage.getItem('ck_schedule')) || DEFAULT_SCHEDULE;
+        let lodgingData = JSON.parse(localStorage.getItem('ck_lodging')) || DEFAULT_LODGING;
+        let rsvpList = JSON.parse(localStorage.getItem('ck_rsvps')) || [];
+        let photosList = JSON.parse(localStorage.getItem('ck_photos')) || [];
 
-        // Vérification du code PIN (2027)
-        document.getElementById('pin-form').addEventListener('submit', (e) => {
+        function renderSite() {
+            document.getElementById('hero-church-time').textContent = churchData.time;
+            document.getElementById('hero-church-address').textContent = churchData.address;
+
+            const scheduleContainer = document.getElementById('schedule-list');
+            scheduleContainer.innerHTML = scheduleData.map(item => `
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-stone-200 bg-cream text-sage font-bold text-xs shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-sm z-10">
+                        ${item.time}
+                    </div>
+                    <div class="w-[calc(100%-3.5rem)] md:w-[calc(50%-2.5rem)] bg-cream p-5 rounded-2xl border border-stone-200/80">
+                        <div class="text-xs font-bold text-terracotta mb-1">${item.time}</div>
+                        <h3 class="text-lg font-bold text-stone-800 mb-1">${item.title}</h3>
+                        <p class="text-sm text-stone-600">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            const lodgingContainer = document.getElementById('lodging-list');
+            lodgingContainer.innerHTML = lodgingData.map(item => `
+                <div class="bg-cream p-6 rounded-2xl border border-stone-200/80 flex flex-col justify-between">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-sage bg-white px-3 py-1 rounded-full border border-stone-200 mb-3">${item.distance}</span>
+                        <h3 class="text-lg font-bold text-stone-800 mb-2">${item.name}</h3>
+                        <p class="text-sm text-stone-600 leading-relaxed">${item.info}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            renderPhotos();
+        }
+
+        // RSVP Submit
+        document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const pin = document.getElementById('pin-input').value.trim();
-            if (pin === '2027') {
+            const entry = {
+                name: document.getElementById('guest-name').value.trim(),
+                attendance: document.getElementById('guest-attendance').value,
+                count: parseInt(document.getElementById('guest-count').value) || 1,
+                notes: document.getElementById('guest-notes').value.trim(),
+                date: new Date().toLocaleDateString('fr-FR')
+            };
+            rsvpList.push(entry);
+            localStorage.setItem('ck_rsvps', JSON.stringify(rsvpList));
+            this.reset();
+            const fb = document.getElementById('rsvp-feedback');
+            fb.classList.remove('hidden');
+            setTimeout(() => fb.classList.add('hidden'), 5000);
+        });
+
+        // Photos
+        document.getElementById('photo-input').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    photosList.unshift(ev.target.result);
+                    try {
+                        localStorage.setItem('ck_photos', JSON.stringify(photosList.slice(0, 20)));
+                    } catch (err) {}
+                    renderPhotos();
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function renderPhotos() {
+            const gallery = document.getElementById('photo-gallery');
+            const emptyMsg = document.getElementById('no-photos-msg');
+            if (photosList.length === 0) {
+                emptyMsg.classList.remove('hidden');
+                gallery.innerHTML = '';
+                return;
+            }
+            emptyMsg.classList.add('hidden');
+            gallery.innerHTML = photosList.map(src => `
+                <div class="aspect-square rounded-xl overflow-hidden border border-stone-200 bg-stone-100">
+                    <img src="${src}" alt="Souvenir mariage" class="w-full h-full object-cover">
+                </div>
+            `).join('');
+        }
+
+        // Admin Modal
+        function openAdminModal() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+        function closeAdminModal() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+        function checkPin() {
+            const val = document.getElementById('admin-pin-input').value;
+            if (val === '2027') {
+                document.getElementById('pin-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
                 document.getElementById('pin-error').classList.add('hidden');
-                pinScreen.classList.add('hidden');
-                adminDashboard.classList.remove('hidden');
-                updateAdminDashboard();
-                renderAdminScheduleEditor();
-                if (!qrGenerated) {
-                    generateWeddingQRCode();
-                }
+                populateAdminDashboard();
             } else {
                 document.getElementById('pin-error').classList.remove('hidden');
             }
-        });
-
-        function updateAdminDashboard() {
-            let totalAdults = 0;
-            let totalChildren = 0;
-            let yesCount = 0;
-            let noCount = 0;
-
-            rsvpList.forEach(item => {
-                if (item.attending === 'oui') {
-                    yesCount++;
-                    totalAdults += Number(item.adults || 0);
-                    totalChildren += Number(item.children || 0);
-                } else {
-                    noCount++;
-                }
-            });
-
-            document.getElementById('stat-total-guests').textContent = totalAdults + totalChildren;
-            document.getElementById('stat-breakdown').textContent = `${totalAdults} adulte(s), ${totalChildren} enfant(s)`;
-            document.getElementById('stat-yes-count').textContent = yesCount;
-            document.getElementById('stat-no-count').textContent = noCount;
-            document.getElementById('stat-photos-count').textContent = photosList.length;
-
-            const tbody = document.getElementById('rsvp-table-body');
-            if (rsvpList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-charcoal/50">Aucune réponse enregistrée pour le moment.</td></tr>`;
-                return;
-            }
-
-            tbody.innerHTML = rsvpList.map(r => {
-                const isYes = r.attending === 'oui';
-                const badge = isYes
-                    ? `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sage-light text-sage-dark">Présent</span>`
-                    : `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-light/60 text-gold-dark">Absent</span>`;
-                const guestsInfo = isYes
-                    ? `${r.adults || 0} ad.${r.children > 0 ? ` + ${r.children} enf.` : ''}`
-                    : '-';
-
-                return `
-                    <tr class="hover:bg-ivory/70">
-                        <td class="py-3 px-4 font-medium text-charcoal">${escapeHtml(r.firstName)} ${escapeHtml(r.lastName)}</td>
-                        <td class="py-3 px-4">${badge}</td>
-                        <td class="py-3 px-4 text-charcoal/80">${guestsInfo}</td>
-                        <td class="py-3 px-4 text-charcoal/70 text-xs">${escapeHtml(r.dietary || '-')}</td>
-                        <td class="py-3 px-4 text-charcoal/70 text-xs max-w-xs truncate" title="${escapeHtml(r.message || '')}">${escapeHtml(r.message || '-')}</td>
-                    </tr>
-                `;
-            }).join('');
         }
 
-        // Génération du QR Code dans l'Espace Mariés
-        function generateWeddingQRCode() {
-            const container = document.getElementById('qrcode-container');
-            if (!container) return;
-            container.innerHTML = '';
-            new QRCode(container, {
-                text: window.location.href,
-                width: 150,
-                height: 150,
-                colorDark: "#2C2E2D",
-                colorLight: "#FFFFFF",
-                correctLevel: QRCode.CorrectLevel.H
-            });
-            qrGenerated = true;
+        function populateAdminDashboard() {
+            const yesCount = rsvpList.filter(r => r.attendance.startsWith('Oui')).reduce((sum, r) => sum + r.count, 0);
+            document.getElementById('rsvp-stats').innerHTML = `<strong>${rsvpList.length}</strong> réponse(s) reçue(s) • <strong>${yesCount}</strong> invité(s) confirmé(s).`;
+
+            document.getElementById('rsvp-admin-list').innerHTML = rsvpList.length ? rsvpList.map(r => `
+                <div class="p-2.5 bg-stone-50 rounded-lg border border-stone-200 flex justify-between">
+                    <div><strong>${r.name}</strong> (${r.count} pers.) — ${r.attendance}<br><span class="text-stone-500">${r.notes || 'Aucune note'}</span></div>
+                    <span class="text-stone-400">${r.date}</span>
+                </div>
+            `).join('') : '<p class="text-stone-400 italic">Aucune réponse enregistrée sur cet appareil.</p>';
+
+            document.getElementById('edit-church-time').value = churchData.time;
+            document.getElementById('edit-church-address').value = churchData.address;
+
+            document.getElementById('edit-schedule-container').innerHTML = scheduleData.map((item, idx) => `
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 bg-stone-50 p-2.5 rounded-lg border border-stone-200">
+                    <input type="text" data-sch-time="${idx}" value="${item.time}" class="px-2 py-1 border rounded text-xs">
+                    <input type="text" data-sch-title="${idx}" value="${item.title}" class="px-2 py-1 border rounded text-xs">
+                    <input type="text" data-sch-desc="${idx}" value="${item.desc}" class="sm:col-span-2 px-2 py-1 border rounded text-xs">
+                </div>
+            `).join('');
+
+            document.getElementById('edit-lodging-container').innerHTML = lodgingData.map((item, idx) => `
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-2 bg-stone-50 p-2.5 rounded-lg border border-stone-200">
+                    <input type="text" data-lod-name="${idx}" value="${item.name}" class="px-2 py-1 border rounded text-xs">
+                    <input type="text" data-lod-dist="${idx}" value="${item.distance}" class="px-2 py-1 border rounded text-xs">
+                    <input type="text" data-lod-info="${idx}" value="${item.info}" class="sm:col-span-2 px-2 py-1 border rounded text-xs">
+                </div>
+            `).join('');
+
+            document.getElementById('qr-url-input').value = window.location.href;
+            generateQR();
         }
 
-        function triggerQRCodeDownload() {
-            const qrImg = document.querySelector('#qrcode-container img');
-            const qrCanvas = document.querySelector('#qrcode-container canvas');
-            let dataUrl = '';
+        function saveAdminEdits() {
+            churchData = {
+                time: document.getElementById('edit-church-time').value,
+                address: document.getElementById('edit-church-address').value
+            };
+            localStorage.setItem('ck_church', JSON.stringify(churchData));
 
-            if (qrCanvas) {
-                dataUrl = qrCanvas.toDataURL('image/png');
-            } else if (qrImg && qrImg.src) {
-                dataUrl = qrImg.src;
-            }
+            scheduleData = scheduleData.map((_, idx) => ({
+                time: document.querySelector(`[data-sch-time="${idx}"]`).value,
+                title: document.querySelector(`[data-sch-title="${idx}"]`).value,
+                desc: document.querySelector(`[data-sch-desc="${idx}"]`).value
+            }));
+            localStorage.setItem('ck_schedule', JSON.stringify(scheduleData));
 
-            if (dataUrl) {
-                const link = document.createElement('a');
-                link.href = dataUrl;
-                link.download = 'FlashCode-Mariage-Corentin-Kelly.png';
-                link.click();
-                showToast("QR Code téléchargé !");
-            } else {
-                showToast("Impossible de préparer l'image du QR Code.", "error");
-            }
+            lodgingData = lodgingData.map((_, idx) => ({
+                name: document.querySelector(`[data-lod-name="${idx}"]`).value,
+                distance: document.querySelector(`[data-lod-dist="${idx}"]`).value,
+                info: document.querySelector(`[data-lod-info="${idx}"]`).value
+            }));
+            localStorage.setItem('ck_lodging', JSON.stringify(lodgingData));
+
+            renderSite();
+            alert("Modifications enregistrées !");
         }
 
-        function triggerCopyWeddingLink() {
-            const urlToCopy = window.location.href;
-            const tempInput = document.createElement('input');
-            tempInput.value = urlToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempInput);
-            showToast("Lien copié dans le presse-papiers !");
-        }
-
-        // Télécharger le QR Code en PNG (depuis l'Espace Mariés)
-        document.getElementById('download-qr-btn').addEventListener('click', triggerQRCodeDownload);
-
-        // Copier le lien du site (depuis l'accueil ou l'Espace Mariés)
-        document.getElementById('hero-copy-link-btn').addEventListener('click', triggerCopyWeddingLink);
-        document.getElementById('copy-link-btn').addEventListener('click', triggerCopyWeddingLink);
-
-        // Export CSV de la liste des invités
-        document.getElementById('export-csv-btn').addEventListener('click', () => {
-            if (rsvpList.length === 0) {
-                showToast("Aucune donnée à exporter.", "error");
-                return;
-            }
-            const headers = ["Prénom", "Nom", "Présence", "Adultes", "Enfants", "Allergies / Régime", "Message"];
-            const rows = rsvpList.map(r => [
-                `"${(r.firstName || '').replace(/"/g, '""')}"`,
-                `"${(r.lastName || '').replace(/"/g, '""')}"`,
-                r.attending === 'oui' ? 'Oui' : 'Non',
-                r.adults || 0,
-                r.children || 0,
-                `"${(r.dietary || '').replace(/"/g, '""')}"`,
-                `"${(r.message || '').replace(/"/g, '""')}"`
-            ]);
-
-            const csvContent = "\uFEFF" + [headers.join(";"), ...rows.map(e => e.join(";"))].join("\n");
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        function downloadUpdatedHTML() {
+            saveAdminEdits();
+            let docHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([docHTML], { type: "text/html;charset=utf-8" });
             const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.setAttribute("href", url);
-            link.setAttribute("download", "Liste-Invites-Mariage-2027.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast("Liste exportée en CSV !");
-        });
-
-        function escapeHtml(str) {
-            return String(str)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "index.html";
+            a.click();
+            URL.revokeObjectURL(url);
         }
 
-        // Lancement au chargement
-        renderPublicSchedule();
-        initApp();
+        function exportCSV() {
+            const headers = ["Nom", "Presence", "Personnes", "Notes", "Date"];
+            const rows = rsvpList.map(r => [r.name, r.attendance, r.count, r.notes.replace(/,/g, " "), r.date]);
+            const csv = [headers, ...rows].map(e => e.join(";")).join("\n");
+            const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "invites_corentin_kelly.csv";
+            a.click();
+        }
+
+        function generateQR() {
+            const box = document.getElementById('qrcode-box');
+            box.innerHTML = '';
+            const url = document.getElementById('qr-url-input').value || window.location.href;
+            new QRCode(box, { text: url, width: 110, height: 110 });
+        }
+
+        renderSite();
     </script>
 </body>
 </html>
