@@ -64,14 +64,33 @@
             <p class="text-lg sm:text-xl text-stone-600 mb-2">Samedi 28 Août 2027</p>
             <p class="text-sm sm:text-base text-stone-500 mb-10">Le Rheu • Ille-et-Vilaine</p>
 
-            <!-- Encart Rendez-vous Église du Rheu (remplace le décompte) -->
-            <div class="max-w-xl mx-auto bg-white border border-stone-200/90 rounded-2xl p-6 sm:p-8 shadow-sm mb-10">
-                <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-cream text-terracotta mb-3">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <p class="uppercase tracking-[0.2em] text-xs text-sage font-bold mb-2">Rendez-vous de la cérémonie</p>
-                <h2 id="hero-church-time" class="text-2xl sm:text-3xl font-bold text-stone-800 mb-2">Église du Rheu</h2>
-                <p id="hero-church-address" class="text-sm sm:text-base text-stone-600">Place de l'Église, 35650 Le Rheu</p>
+    <script>
+    const weddingDate = new Date("2027-08-28T14:30:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-center font-bold text-lg'>Le grand jour est arrivé !</div>";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = String(days).padStart(2, '0');
+        document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center gap-3">
